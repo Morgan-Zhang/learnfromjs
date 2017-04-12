@@ -8,9 +8,78 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link href="" rel="stylesheet">
+    <style>
+        .wrap{
+            padding: 20px;
+            background: blue;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="wrap">
+        <button id="btn">点我点我快点我啊</button>
+    </div>
+    <ul id="list">
+        <li>111</li>
+        <li>2222</li>
+        <li>33333</li>
+    </ul>
+
+    <input id="btnClick" type="button" value="Click Here" />
+    <button id="btn-add">点击添加我</button>
+    <script>
+
+         function $(id){
+            return document.querySelector(id);
+        }
+        function $$(cls){
+            return document.querySelectorAll(cls);
+        }
+
+
+         var body = document.body;
+         var wrap = $('.wrap');
+         
+         var btn = $('#btn');
+         var addBtn = $('#btn-add');
+
+
+        // btn.addEventListener('click',function(event){
+        //     console.log(event);
+        //     console.log("你已经点击我了，还要再点击吗")
+        // })
+
+        // var lists = $$('#list li');
+        // for (var i = 0;i<lists.length;i++){
+        //     lists[i].addEventListener('click',function(e){
+        //         console.log(e.target.innerText);
+        //     })
+        // }
+
+        addBtn.addEventListener('click',function(){
+           var li = document.createElement('li');
+           li.innerText = '你真的添加了我';
+        //    li.addEventListener('click',function(e){
+        //         console.log(e.target.innerText);
+        //     })
+           list.appendChild(li);           
+        })
+
+        list.addEventListener('click',function(e){
+            console.log(e.target.innerText)
+        })
+
+
+       
+
+
+    //     var btnClick = document.getElementById('btnClick');
+    //     btnClick.onclick = function showMessage() {
+    //     console.log(this.id);
+    // };
+        
+    </script>
 </body>
 
 </html>
