@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
     <link href="" rel="stylesheet">
     <style>
-        .wrap{
+        .wrap {
             padding: 20px;
             background: blue;
         }
@@ -17,7 +17,41 @@
 </head>
 
 <body>
-    <div class="wrap">
+    <!--<select  class="xiaola2" value = "这里是省份">省份
+        <option value= "北京市" selected = "selected">北京市</option>
+        <option value="上海市">上海市</option>
+    </select>
+
+    <select name = "省份">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+
+
+<form>
+<select name="cars">省份
+<option value="volvo">Volvo</option>
+<option value="saab">Saab</option>
+<option value="fiat" selected="selected">Fiat</option>
+<option value="audi">Audi</option>
+</select>
+</form>-->
+
+
+    <input list="browsers" name="browser" select ="省份" >
+    <datalist id="browsers" select ="省份">
+        <option value="北京市" select ="省份">
+        <option value="上海市">
+        <option value="广东省">
+        <option value="浙江省">
+    </datalist>
+   
+  
+
+
+    <!--<div class="wrap">
         <button id="btn">点我点我快点我啊</button>
     </div>
     <ul id="list">
@@ -27,22 +61,22 @@
     </ul>
 
     <input id="btnClick" type="button" value="Click Here" />
-    <button id="btn-add">点击添加我</button>
+    <button id="btn-add">点击添加我</button>-->
     <script>
-
-         function $(id){
+        function $(id) {
             return document.querySelector(id);
         }
-        function $$(cls){
+
+        function $$(cls) {
             return document.querySelectorAll(cls);
         }
 
 
-         var body = document.body;
-         var wrap = $('.wrap');
-         
-         var btn = $('#btn');
-         var addBtn = $('#btn-add');
+        var body = document.body;
+        var wrap = $('.wrap');
+
+        var btn = $('#btn');
+        var addBtn = $('#btn-add');
 
 
         // btn.addEventListener('click',function(event){
@@ -57,28 +91,27 @@
         //     })
         // }
 
-        addBtn.addEventListener('click',function(){
-           var li = document.createElement('li');
-           li.innerText = '你真的添加了我';
-        //    li.addEventListener('click',function(e){
-        //         console.log(e.target.innerText);
-        //     })
-           list.appendChild(li);           
+        addBtn.addEventListener('click', function () {
+            var li = document.createElement('li');
+            li.innerText = '你真的添加了我';
+            //    li.addEventListener('click',function(e){
+            //         console.log(e.target.innerText);
+            //     })
+            list.appendChild(li);
         })
 
-        list.addEventListener('click',function(e){
+        list.addEventListener('click', function (e) {
             console.log(e.target.innerText)
         })
 
 
-       
 
 
-    //     var btnClick = document.getElementById('btnClick');
-    //     btnClick.onclick = function showMessage() {
-    //     console.log(this.id);
-    // };
-        
+
+        //     var btnClick = document.getElementById('btnClick');
+        //     btnClick.onclick = function showMessage() {
+        //     console.log(this.id);
+        // };
     </script>
 </body>
 
