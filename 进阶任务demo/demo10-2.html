@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>demo10-2</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <style>
+        ul li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        h2,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .btn {
+
+            /*  border:1px solid #ccc; */
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            height: 600px;
+            width: 1340px;
+            position: relative;
+            z-index: 0;
+        }
+
+        .content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -100px;
+            margin-left: -250px;
+            border: 1px solid #ccc;
+            height: 200px;
+            width: 500px;
+            z-index: 1;
+            background: #fff;
+            display: none;
+        }
+
+        .ct-header {
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .ct-header h2 {
+            padding: 10px;
+            float: left;
+        }
+
+        .ct-header p {
+            float: right;
+            padding: 17px;
+            cursor: pointer;
+            font-size: 12px
+        }
+
+        .ct-wrap {
+            border-bottom: 1px solid #e1e1e1;
+            padding: 14px 10px;
+        }
+
+        .ct-wrap p {
+            padding: 10px;
+        }
+
+        .ct-footer>li {
+            float: right;
+            cursor: pointer;
+            padding: 7px 12px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="btn">点我啊</button>
+        <div class="content">
+            <div class="ct-header clearfix">
+                <h2>我是标题</h2>
+                <p class="close">X</p>
+            </div>
+            <div class="ct-wrap">
+                <p>我是内容1</p>
+                <p>我是内容2</p>
+            </div>
+            <ul class="ct-footer clearfix">
+                <li>确认</li>
+                <li class="cancel">取消</li>
+            </ul>
+
+        </div>
+        <script>
+            var btn = $('.btn');
+            var content = $('.content');
+            var container = $('.container');
+            var cancel = $('.cancel');
+            var close = $('.close');
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                content.style.display = 'block';
+                container.style.backgroundColor = '#ccc';
+            });
+            container.addEventListener('click', function (e) {
+                content.style.display = 'none';
+                container.style.background = '#fff';
+            });
+            content.addEventListener('click', function (e) {
+                e.stopPropagation();
+                content.style.display = 'block';
+            });
+            cancel.addEventListener('click', function (e) {
+                e.stopPropagation();
+                content.style.display = 'none';
+                container.style.backgroundColor = '#fff';
+            });
+            close.addEventListener('click', function (e) {
+                e.stopPropagation();
+                content.style.display = 'none';
+                container.style.backgroundColor = '#fff';
+            });
+
+            function $(id) {
+                return document.querySelector(id);
+            }
+
+            function $$(cls) {
+                return document.querySelectorAll(cls);
+            }
+        </script>
+</body>
+
+</html>
