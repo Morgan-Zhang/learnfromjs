@@ -42,129 +42,132 @@
         // }, 1);
 
         1
-        //使用立即执行函数，将i传递到函数作用域内
-        // var fnArr = [];
-        // for (var i = 0; i < 10; i++) {
-        //     (function (n) {
-        //         fnArr[i] = function () {
-        //             return n;
-        //         }
-        //     })(i);
+       // 使用立即执行函数，将i传递到函数作用域内
+        var fnArr = [];
+        for (var i = 0; i < 10; i++) {
+            (function (n) {
+                fnArr[i] = function () {
+                    return n;
+                }
+            })(i);
 
-        // }
-        // console.log(fnArr[3]());
-
-
-        //使用闭包
-        // var fnArr = [];
-        // for (var i = 0; i < 10; i++) {
-        //     fnArr[i] = function () {
-        //         var n=i;
-        //         return function(){
-        //              return n;
-        //         }               
-        //     }(i);
-        // }
-        // console.log(fnArr[3]());
-
-        //2
-        // var Car = (function () {
-        //     var speed = 0;
-
-        //     function setSpeed(s) {
-        //         speed = s
-        //     }
-
-        //     function getSpeed() {
-        //         return speed
-        //     }
-
-        //     function accelerate() {
-        //         return speed += 10
-        //     }
-
-        //     function decelerate() {
-        //         if (speed > 0) {
-        //             return speed -= 10;
-        //         } else {
-        //             return speed;
-        //         }
-        //     }
-
-        //     function getStatus() {
-        //         if (speed > 0) {
-        //             console.log('running')
-        //         } else {
-        //             console.log('stop')
-        //         }
-        //     }
-        //     return {
-        //         'setSpeed': setSpeed,
-        //         'getSpeed': getSpeed,
-        //         'accelerate': accelerate,
-        //         'decelerate': decelerate,
-        //         'getStatus': getStatus
-        //     }
-        // })()
-        // Car.setSpeed(30);
-        // Car.getSpeed(); //30
-        // Car.accelerate();
-        // Car.getSpeed(); //40;
-        // Car.decelerate();
-        // Car.decelerate();
-        // Car.getSpeed(); //20
-        // Car.getStatus(); // 'running';
-        // Car.decelerate();
-        // Car.decelerate();
-        // Car.getStatus(); //'stop';
-        // //Car.speed;  //error
-
-        // var a = 1;
-        // setTimeout(function () {
-        //     a = 2;
-        //     console.log(a);
-        // }, 0);
-        // var a;
-        // console.log(a);
-        // a = 3;
-        // console.log(a);
-        // //依次输出为1、3、2，先给a赋值为1，
-        // //然后又给a赋值为3，最后执行定时器，给a赋值2
+        }
+        console.log(fnArr[3]());
 
 
-        // var flag = true;
-        // setTimeout(function () { //等待所有任务结束后执行
-        //     flag = false;
-        // }, 0)
-        // while (flag) {} //执行循环函数
-        // //，因为flag永远是true，所以无限循环
-        // console.log(flag); //不会执行
+       // 使用闭包
+        var fnArr = [];
+        for (var i = 0; i < 10; i++) {
+            fnArr[i] = function () {
+                var n=i;
+                return function(){
+                     return n;
+                }               
+            }(i);
+        }
+        console.log(fnArr[3]());
+
+        2
+        var Car = (function () {
+            var speed = 0;
+
+            function setSpeed(s) {
+                speed = s
+            }
+
+            function getSpeed() {
+                return speed
+            }
+
+            function accelerate() {
+                return speed += 10
+            }
+
+            function decelerate() {
+                if (speed > 0) {
+                    return speed -= 10;
+                } else {
+                    return speed;
+                }
+            }
+
+            function getStatus() {
+                if (speed > 0) {
+                    console.log('running')
+                } else {
+                    console.log('stop')
+                }
+            }
+            return {
+                'setSpeed': setSpeed,
+                'getSpeed': getSpeed,
+                'accelerate': accelerate,
+                'decelerate': decelerate,
+                'getStatus': getStatus
+            }
+        })()
+        Car.setSpeed(30);
+        Car.getSpeed(); //30
+        Car.accelerate();
+        Car.getSpeed(); //40;
+        Car.decelerate();
+        Car.decelerate();
+        Car.getSpeed(); //20
+        Car.getStatus(); // 'running';
+        Car.decelerate();
+        Car.decelerate();
+        Car.getStatus(); //'stop';
+        //Car.speed;  //error
+
+        var a = 1;
+        setTimeout(function () {
+            a = 2;
+            console.log(a);
+        }, 0);
+        var a;
+        console.log(a);
+        a = 3;
+        console.log(a);
+        //依次输出为1、3、2，先给a赋值为1，
+        //然后又给a赋值为3，最后执行定时器，给a赋值2
+
+
+        var flag = true;
+        setTimeout(function () { //等待所有任务结束后执行
+            flag = false;
+        }, 0)
+        while (flag) {} //执行循环函数
+        //，因为flag永远是true，所以无限循环
+        console.log(flag); //不会执行
 
 
         for (var i = 0; i < 5; i++) {
             setTimeout(function (i) {
-                    return function () {
-                        console.log('delayer:' + i);
-                    }
-                    }(i), 0);
+                return function () {
+                    console.log('delayer:' + i);
+                }
+            }(i), 0);
             console.log(i);
         }
 
 
 
 
-        function isAndroid(){
-		return /Android/.test(window.navigator.userAgent);
-	}
-	function isiPhone(){
-		return /iphone/i.test(window.navigator.userAgent);
-	}
-	function isiPad(){
-		return /ipad/i.test(window.navigator.userAgent);
-	}
-	function isIOS(){
-		return /(ipad)|(iphone)/.test(widow.navigator.userAgent);
-	}
+        function isAndroid() {
+            return /Android/.test(window.navigator.userAgent);
+        }
+
+        function isiPhone() {
+            return /iphone/i.test(window.navigator.userAgent);
+        }
+
+        function isiPad() {
+            return /ipad/i.test(window.navigator.userAgent);
+        }
+
+        function isIOS() {
+            return /(ipad)|(iphone)/.test(widow.navigator.userAgent);
+        }
     </script>
 
 </body>
