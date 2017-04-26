@@ -1,22 +1,19 @@
-// 服务端 router.js
+app.get("/loadMore", function(req, res) {
+    var idx = req.query.index;
+    var ndpg = req.query.needPage;
+    var news = [];
+    for (var i = 0; i < ndpg; i++) {
+        news.push("新闻get" + (parseInt(idx) + i + 1))
+    }
+    res.send(news)
+})
 
-
-app.get('/loadMore', function(req, res) {
-
-	var curIdx = req.query.index;
-	var len = req.query.length;
-	var data = [];
-
-	for(var i = 0; i < len; i++) {
-		data.push('新闻' + (parseInt(curIdx) + i));
-	}
-
-	res.send(data);
-});
-
-
-/**
- * 发送 GET 请求， 无参数
- * GET /hello
- * 返回响应数据
- */
+app.post("/loadMore", function(req, res) {
+    var idx = req.body.index;
+    var ndpg = req.body.needPage;
+    var news = [];
+    for (var i = 0; i < ndpg; i++) {
+        news.push("新闻" + (parseInt(idx) + i + 1))
+    }
+    res.send(news)
+})

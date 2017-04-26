@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>12-1</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>12-1</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
 </head>
+
 <body>
-<p>
-    你好
-</p>
-    
+    <p>
+        你好
+    </p>
+
+
+    <script>
+        //使用状态锁
+        var lock = false;
+        btn.addEventListener('click', function () {
+            if (lock) {
+                return
+            } else {
+                lock = true;
+                ajax({
+                    ....
+                    lock = false
+                })
+            }
+        });
+
+
+        var AjaxLock = flase;
+        if (!AjaxLock) {
+            AjaxLock = true;
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    // do sth
+                    AjaxLock = false;
+                }
+            }
+            //ajax配置
+            xhr.send()
+        } else {
+            return;
+        }
+
+
+
+        var ajaxLock = false;
+        if (ajaxLock) {
+            return
+        }
+        xhr = new XMLHttpRequest();
+        ajaxLock = true;
+        xhr.onreadystatechange = function () {
+            if (xhr.readystate == 4) {
+                ajaxLock = false;
+            }
+        }
+    </script>
+
+
 </body>
+
 </html>

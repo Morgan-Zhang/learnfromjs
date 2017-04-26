@@ -1,30 +1,26 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>进阶12加载更多</title>
+  <title>Document</title>
   <style>
     ul,
     li {
-      margin: 0;
+      list-style: none;
       padding: 0;
+      margin: 0;
     }
 
-    li {
+    #news>li {
       list-style: none;
       border: 1px solid #ccc;
       padding: 10px;
       margin-top: 10px;
       cursor: pointer;
       border-radius: 4px;
-    }
-
-    li:hover {
-      background-color: lightblue;
-      color: #fff;
     }
 
     .btn {
@@ -35,7 +31,7 @@
       border-radius: 5px;
       display: block;
       background-color: #fff;
-      color:#E27272;
+      color: #E27272;
       text-align: center;
       width: 80px;
       text-decoration: none;
@@ -45,51 +41,86 @@
       background: green;
       color: #fff;
     }
+
+    li:hover {
+      background-color: lightblue;
+      color: #fff;
+    }
   </style>
 </head>
 
 <body>
-  <ul id="ct">
-    <!--<li>内容1</li>
-    <li>内容2</li>-->
-  </ul>
-  <a href="#" id="load-more" class="btn">加载更多</a>
-
+  <ul id="news">
+    <li>新闻1</li>
+    <li>新闻2</li>
+     </ul>
+  <button id="more" class="btn">加载更多</button>
+</body>
 <script>
-    var btn = document.querySelector('#load-more');
-    var ct = document.querySelector('#ct');
+  var btn = $("#more");
+  var newsList = $("#news")
 
-    btn.addEventListener('click',function(){
-      var xhr = new XMLHttpRequest()
-      xhr.onreadystatechange = function(){
-        if(xhr.readyState === 4 &&(xhr.status === 200 || xhr.status == 304)
-        ){
-          var results = JSON.parse(xhr.responseText)
-          console.log(results)
-          var html = '';
-          for (var i = 0;i<results.length;i++){
-            html +='<li>'+ results[i]+ '</li>';
-          }
-          ct.innerHTML = html
+  btn.addEventListener("click", function () {
+    ajax({
+      type: "post", //可以改为get请求哦！
+      url: "/loadMore",
+      data: {
+        index: newsList.children.length,
+        needPage: 5
+      },
+      success: addNews,
+      error: function () {
+        console.log("出错了")
+      }
+    })
+  })
+
+  function addNews(arr) {
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < arr.length; i++) {
+      var list = document.createElement("li");
+      list.innerText = arr[i];
+      frag.appendChild(list);
+    }
+    news.appendChild(frag)
+  }
+
+  function ajax(opt) {
+    var xhr = new XMLHttpRequest();
+    //  /loadMore?index=5&needPage=3&
+    var url = "";
+    for (var key in opt.data) {
+      url += key + "=" + opt.data[key] + "&";
+    }
+
+    console.log("url:", url)
+
+    if (opt.type === "post") {
+      xhr.open(opt.type, opt.url, true)
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+      xhr.send(url)
+    }
+    if (opt.type === "get") {
+      xhr.open(opt.type, opt.url + "?" + url, true)
+      xhr.send()
+    }
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200 || xhr.status === 304) {
+          var result = JSON.parse(xhr.responseText)
+          console.log(result)
+          opt.success(result)
+        } else {
+          opt.error()
         }
       }
-      xhr.open('get','/loadMore?index=0&length=5',true)
-      xhr.send()
+    }
+  }
 
-
-      // var html = getHTML(data)
-      // render(html)
-
-    })
-
-
-
-
-
-
-
-
+  function $(str) {
+    return document.querySelector(str);
+  }
 </script>
-</body>
 
 </html>
